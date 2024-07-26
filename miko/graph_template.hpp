@@ -9,9 +9,11 @@ namespace miko
 
     struct edge_template
     {
-      public:
+    public:
         int from;
         int to;
+
+        edge_template() {}
 
         edge_template(int from, int to)
         {
@@ -27,7 +29,7 @@ namespace miko
 
     template <typename E> struct graph_template
     {
-      public:
+    public:
         graph_template()
         {
             graph_template(0);
@@ -37,11 +39,6 @@ namespace miko
         {
             this->n = n;
             g.resize(n);
-        }
-
-        void add_edge(E e)
-        {
-            g[e.from].push_back(e);
         }
 
         int size()
@@ -58,8 +55,13 @@ namespace miko
         {
             return g[k];
         }
+    protected:
+        void add_edge(E e)
+        {
+            g[e.from].push_back(e);
+        }
     
-      private:
+    private:
         int n;
         std::vector<std::vector<E>> g;
     };
